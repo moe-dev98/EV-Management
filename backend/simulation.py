@@ -1,5 +1,5 @@
 import random
-from constants import NUM_CHARGEPOINTS, CHARGING_POWER_KW, TOTAL_INTERVALS, ENERGY_CONSUMPTION_PER_100KM
+from backend.constants import NUM_CHARGEPOINTS, CHARGING_POWER_KW, TOTAL_INTERVALS, ENERGY_CONSUMPTION_PER_100KM
 
 # Probability distributions for EV arrivals at each hour of the day
 hourly_arrival_probabilities = {
