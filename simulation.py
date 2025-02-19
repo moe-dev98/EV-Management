@@ -1,11 +1,5 @@
 import random
-
-# Constants
-NUM_CHARGEPOINTS = 20
-CHARGING_POWER_KW = 11
-TOTAL_INTERVALS = 35040  
-ENERGY_CONSUMPTION_PER_100KM = 18 
-
+from constants import NUM_CHARGEPOINTS, CHARGING_POWER_KW, TOTAL_INTERVALS, ENERGY_CONSUMPTION_PER_100KM
 
 # Probability distributions for EV arrivals at each hour of the day
 hourly_arrival_probabilities = {
@@ -19,6 +13,11 @@ charging_needs = [
     (0.3431, 0), (0.0490, 5), (0.0980, 10), (0.1176, 20), (0.0882, 30), 
     (0.1176, 50), (0.1078, 100), (0.0490, 200), (0.0294, 300)
 ]
+
+# BONUS QUESTION 3  
+# In regards to: If you seed the probabilities vs. using random() for random-but-deterministicresults.
+# Keeping the same value hardcoded here ensures that the simulation is reproducible.
+random.seed(20)
 
 # Simulation
 total_energy_consumed_kwh = 0
@@ -53,4 +52,12 @@ concurrency_factor = actual_max_power_demand_kw / theoretical_max_power_demand_k
 print(f"Total energy consumed: {total_energy_consumed_kwh:.2f} kWh")
 print(f"Theoretical maximum power demand: {theoretical_max_power_demand_kw} kW")
 print(f"Actual maximum power demand: {actual_max_power_demand_kw} kW")
+
+# BONUS QUESTION 1 ANSWER 
+# Mathematically speaking if we were to increase the number of chargepoints, we could have an increase decrease or even stay stable
+# this depends on the demand for charging with a higher arrival prob we could get a higher concurrency factor , if there isn't much demand than it could 
+# stabilize or even be a bit lower
+
+# I did a small personnel research regarding this and realized that in real life scenarios this isn't always proportional
+# An increase of charge stations wouldn't mean that the demand has grown so in most non theoritical scenarios the concurrency factor would decrease
 print(f"Concurrency factor: {concurrency_factor:.2%}")
