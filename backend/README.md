@@ -1,28 +1,29 @@
-# EV Management
+# How to Run the FastAPI Application
 
-## Overview
+## Prerequisites
 
-This simulation models the energy consumption and power demand of electric vehicle (EV) chargepoints over a period of time (15minutes intervals).
+1. Ensure you have Python and pip installed. You can download Python from [python3.org](https://www.python.org/).
 
-## Running the Simulation
+## Installation
 
-To run the simulation, you can simply execute the `simulation.py` script. The script uses default values for various constants, but you can override these values by setting environment variables.
+1. Install `uvicorn` and `fastapi` using pip:
 
-### Environment Variables
+    ```sh
+    pip install uvicorn fastapi
+    ```
 
-The following environment variables can be set to customize the simulation:
+## Running the Application
 
-- `NUM_CHARGEPOINTS`: Number of chargepoints (default: 20)
-- `CHARGING_POWER_KW`: Charging power in kW (default: 11)
-- `TOTAL_INTERVALS`: Total number of intervals in the simulation (default: 35040)
-- `ENERGY_CONSUMPTION_PER_100KM`: Energy consumption per 100 km in kWh (default: 18)
+1. Navigate to the directory containing `main.py`:
 
-### Example
+    ```sh
+    cd backend
+    ```
 
-To run the simulation with custom values, and update for example the number of charge points to see the behavior of the concurrency factor you can set this environment variable in your terminal before running the script
+2. Run the FastAPI application using `uvicorn`:
 
-```sh
-export NUM_CHARGEPOINTS=25
+    ```sh
+    uvicorn main:app --host 0.0.0.0 --port 8000
+    ```
 
-python3 simulation.py
-
+3. Open your browser and go to `http://127.0.0.1:8000/health` to check the health status.
