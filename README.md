@@ -19,13 +19,10 @@ The following environment variables can be set to customize the simulation:
 
 ### Example
 
-To run the simulation with custom values, you can set the environment variables in your terminal before running the script
+To run the simulation with custom values, and update for example the number of charge points to see the behavior of the concurrency factor you can set this environment variable in your terminal before running the script
 
 ```sh
 export NUM_CHARGEPOINTS=25
-export CHARGING_POWER_KW=22
-export TOTAL_INTERVALS=40000
-export ENERGY_CONSUMPTION_PER_100KM=20
 
 python3 simulation.py
 
