@@ -1,7 +1,10 @@
 # EV-Management
 
 ## Logic
-Description of the logic part of the project.
+
+To run the simulation script, use the following command:
+
+python3 simulation.py
 
 ## Frontend
 Description of the frontend part of the project.
