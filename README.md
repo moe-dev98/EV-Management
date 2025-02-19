@@ -27,5 +27,5 @@ export CHARGING_POWER_KW=22
 export TOTAL_INTERVALS=40000
 export ENERGY_CONSUMPTION_PER_100KM=20
 
-python simulation.py
+python3 simulation.py
 
