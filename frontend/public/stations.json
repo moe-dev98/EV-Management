@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "stationName": "Aldi Parkplatz",
+    "position": [48.3715, 10.8988],
+    "chargePoints": [
+      { "power": 11, "count": 4 },
+      { "power": 22, "count": 2 }
+    ],
+    "carArrivalProbability": 100,
+    "consumptionOfCars": 18
+  },
+  {
+    "id": 2,
+    "stationName": "Lidl Parkplatz",
+    "position": [48.3695, 10.8968],
+    "chargePoints": [
+      { "power": 50, "count": 1 },
+      { "power": 22, "count": 3 }
+    ],
+    "carArrivalProbability": 100,
+    "consumptionOfCars": 18
+  },
+  {
+    "id": 3,
+    "stationName": "Edeka Parkplatz",
+    "position": [48.3725, 10.8998],
+    "chargePoints": [
+      { "power": 11, "count": 6 },
+      { "power": 22, "count": 2 },
+      { "power": 50, "count": 1 }
+    ],
+    "carArrivalProbability": 100,
+    "consumptionOfCars": 18
+  },
+  {
+    "id": 4,
+    "stationName": "Rewe Parkplatz",
+    "position": [48.3685, 10.8958],
+    "chargePoints": [
+      { "power": 22, "count": 4 },
+      { "power": 50, "count": 2 }
+    ],
+    "carArrivalProbability": 100,
+    "consumptionOfCars": 18
+  },
+  {
+    "id": 5,
+    "stationName": "Kaufland Parkplatz",
+    "position": [48.3735, 10.9008],
+    "chargePoints": [
+      { "power": 11, "count": 3 },
+      { "power": 22, "count": 3 },
+      { "power": 50, "count": 1 }
+    ],
+    "carArrivalProbability": 100,
+    "consumptionOfCars": 18
+  }
+]
