@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
+import { FaTimes } from 'react-icons/fa'; // Import icon
 
 const ChargePointModal = ({ station, onClose }) => {
   // Define table data
@@ -28,7 +29,7 @@ const ChargePointModal = ({ station, onClose }) => {
   });
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-md w-full max-w-4xl overflow-auto">
         <h3 className="text-lg font-bold mb-4 text-black-600 font-sans">{station.name} Distribution</h3>
         <div>
@@ -59,9 +60,9 @@ const ChargePointModal = ({ station, onClose }) => {
         </div>
         <button
           onClick={onClose}
-          className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md"
+          className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md flex items-center"
         >
-          Close
+          <FaTimes className="mr-2" /> Close
         </button>
       </div>
     </div>

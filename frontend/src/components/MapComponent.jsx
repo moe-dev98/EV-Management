@@ -16,26 +16,54 @@ const MapComponent = () => {
     return chargePoints.reduce((total, point) => total + (point.power * point.count), 0);
   };
 
+  const getColorBasedOnDemand = (actualMaxPowerDemand, totalEnergy) => {
+    if (actualMaxPowerDemand >= totalEnergy - 20) {
+      return 'red';
+    } else if (actualMaxPowerDemand >= totalEnergy / 2) {
+      return 'blue';
+    } else {
+      return 'green';
+    }
+  };
+
   return (
-    <MapContainer center={position} zoom={15} style={{ height: '50vh', width: '100%' }}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      {stations.map(station => (
-        <Circle
-          key={station.id}
-          center={station.position}
-          radius={20} // Adjust radius as needed
-          color="grey"
-        >
-          <Popup>
-            <strong>{station.stationName}</strong><br />
-            Total Energy: {calculateTotalEnergy(station.chargePoints)} kW
-          </Popup>
-        </Circle>
-      ))}
-    </MapContainer>
+    <div>
+      <MapContainer 
+        center={position} 
+        zoom={16} 
+        className="h-96 w-full z-0 border-2 border-gray-800 rounded-lg"
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" // this is not the default tile set from leaflet 
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        />
+        {stations.map(station => (
+          <Circle
+            key={station.id}
+            center={station.position}
+            radius={10} 
+            color={getColorBasedOnDemand(station.actualMaxPowerDemand, calculateTotalEnergy(station.chargePoints))}
+          >
+            <Popup>
+              <strong>{station.stationName}</strong><br />
+              Max Theoretical Energy: {calculateTotalEnergy(station.chargePoints)} kW<br />
+              Actual Max Power Demand: {station.actualMaxPowerDemand} kW
+            </Popup>
+          </Circle>
+        ))}
+      </MapContainer>
+      <div className="flex justify-around mt-2">
+        <div className="flex items-center">
+          <span className="inline-block w-5 h-5 bg-red-500 mr-2"></span> High Demand
+        </div>
+        <div className="flex items-center">
+          <span className="inline-block w-5 h-5 bg-blue-500 mr-2"></span> Medium Demand
+        </div>
+        <div className="flex items-center">
+          <span className="inline-block w-5 h-5 bg-green-500 mr-2"></span> Low Demand
+        </div>
+      </div>
+    </div>
   );
 };
 

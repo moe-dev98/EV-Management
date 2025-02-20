@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FaPlus, FaTrash } from 'react-icons/fa'; // Import icons
+import { FaPlus, FaTrash, FaSave, FaTimes } from 'react-icons/fa'; // Import icons
 
-function CreateStationForm({ onClose, onSave }) {
+function CreateStationForm({ onClose}) {
   const [stationName, setStationName] = useState('');
   const [chargePoints, setChargePoints] = useState([{ power: 11, count: 1 }]);
   const [errors, setErrors] = useState({});
@@ -39,18 +39,19 @@ function CreateStationForm({ onClose, onSave }) {
   const removeChargePoint = (index) => {
     setChargePoints(chargePoints.filter((_, i) => i !== index));
   };
-
   const handleSave = (e) => {
     e.preventDefault();
     if (validate()) {
-      const newStation = { stationName, chargePoints, probabilityOfArrival, consumptionOfCars };
-      onSave(newStation);
-      onClose();
+      if (window.confirm('Are you sure you want to save this station?')) {
+        const newStation = { stationName, chargePoints, probabilityOfArrival, consumptionOfCars };
+        console.log(newStation);
+        onClose();
+      }
     }
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"> {/* Add z-index */}
       <div className="bg-white p-6 rounded shadow-lg w-full max-w-4xl overflow-auto">
         <form onSubmit={handleSave} className="p-6">
           <h1 className="text-xl font-semibold mb-4 text-gray-800 font-sans">New Charging Station</h1>
@@ -146,15 +147,15 @@ function CreateStationForm({ onClose, onSave }) {
           </div>
 
           <div className="flex justify-end space-x-4 mt-4">
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
-              Save Station
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center">
+              <FaSave className="mr-2" /> Save Station
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="bg-red-500 text-white px-4 py-2 rounded-md"
+              className="bg-red-500 text-white px-4 py-2 rounded-md flex items-center"
             >
-              Close
+              <FaTimes className="mr-2" /> Close
             </button>
           </div>
         </form>

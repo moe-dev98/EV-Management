@@ -8,7 +8,8 @@
       { "power": 22, "count": 2 }
     ],
     "carArrivalProbability": 100,
-    "consumptionOfCars": 18
+    "consumptionOfCars": 18,
+    "actualMaxPowerDemand": 30 
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
       { "power": 22, "count": 3 }
     ],
     "carArrivalProbability": 100,
-    "consumptionOfCars": 18
+    "consumptionOfCars": 18,
+    "actualMaxPowerDemand": 60 
   },
   {
     "id": 3,
@@ -31,7 +33,8 @@
       { "power": 50, "count": 1 }
     ],
     "carArrivalProbability": 100,
-    "consumptionOfCars": 18
+    "consumptionOfCars": 18,
+    "actualMaxPowerDemand": 105.6 
   },
   {
     "id": 4,
@@ -42,7 +45,8 @@
       { "power": 50, "count": 2 }
     ],
     "carArrivalProbability": 100,
-    "consumptionOfCars": 18
+    "consumptionOfCars": 18,
+    "actualMaxPowerDemand": 50 
   },
   {
     "id": 5,
@@ -54,6 +58,7 @@
       { "power": 50, "count": 1 }
     ],
     "carArrivalProbability": 100,
-    "consumptionOfCars": 18
+    "consumptionOfCars": 18,
+    "actualMaxPowerDemand": 40 
   }
 ]

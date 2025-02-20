@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
 import ChargePointModal from './ChargePointModal';
-import CreateStationForm from './CreateStationForm'; // Import the CreateStationForm component
+import CreateStationForm from './CreateStationForm';
+import { FaPlus, FaTrash, FaChartBar } from 'react-icons/fa'; // Import icons
 
 const StationList = () => {
   const [stations, setStations] = useState([]);
@@ -38,10 +39,6 @@ const StationList = () => {
     }
   };
 
-  const handleSaveStation = (newStation) => {
-    setStations((prevStations) => [...prevStations, newStation]);
-  };
-
   // Define table data
   const data = useMemo(
     () =>
@@ -49,8 +46,8 @@ const StationList = () => {
         name: station.stationName,
         totalChargePoints: calculateTotalChargePoints(station.chargePoints),
         maxCapacity: calculateMaxCapacity(station.chargePoints),
-        carArrivalProbability: station.carArrivalProbability, // Directly use value from station
-        consumptionOfCars: station.consumptionOfCars, // Directly use value from station
+        carArrivalProbability: station.carArrivalProbability, 
+        consumptionOfCars: station.consumptionOfCars, 
         actions: station,
       })),
     [stations]
@@ -60,7 +57,7 @@ const StationList = () => {
   const columns = useMemo(
     () => [
       {
-        header: 'Station Name',
+        header: 'Charging Station Name',
         accessorKey: 'name',
         size: 150,
       },
@@ -92,15 +89,15 @@ const StationList = () => {
           <div className="flex justify-center space-x-2">
             <button
               onClick={() => handleModal('selectedStation', row.original.actions)}
-              className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+              className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 flex items-center"
             >
-              Distribution 
+              <FaChartBar className="mr-2" /> Distribution
             </button>
             <button
               onClick={() => handleDeleteStation(row.original.actions.id)}
-              className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
+              className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 flex items-center"
             >
-              Delete
+              <FaTrash className="mr-2" /> Delete
             </button>
           </div>
         ),
@@ -122,9 +119,9 @@ const StationList = () => {
       <div className="flex justify-end mb-4">
         <button
           onClick={() => handleModal('isCreateModalOpen', true)}
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 font-sans text-sm"
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 font-sans text-sm flex items-center"
         >
-          Create Station
+          <FaPlus className="mr-2" /> Create Station
         </button>
       </div>
       <table className="min-w-full bg-white border border-gray-200">
@@ -157,7 +154,7 @@ const StationList = () => {
       )}
 
       {modalState.isCreateModalOpen && (
-        <CreateStationForm onClose={() => handleModal('isCreateModalOpen', false)} onSave={handleSaveStation} />
+        <CreateStationForm onClose={() => handleModal('isCreateModalOpen', false)}/>
       )}
     </div>
   );
