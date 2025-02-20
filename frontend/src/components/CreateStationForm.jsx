@@ -56,7 +56,6 @@ function CreateStationForm({ onClose}) {
         <form onSubmit={handleSave} className="p-6">
           <h1 className="text-xl font-semibold mb-4 text-gray-800 font-sans">New Charging Station</h1>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Station Name</label>
             <input
               type="text"
               value={stationName}
@@ -135,7 +134,7 @@ function CreateStationForm({ onClose}) {
                   </select>
                   {errors[`power${index}`] && <p className="text-red-500">{errors[`power${index}`]}</p>}
                 </div>
-                <button type="button" onClick={() => removeChargePoint(index)} className="text-red-500 self-start mt-3">
+                <button type="button" onClick={() => removeChargePoint(index)} className="text-red-500 mt-6">
                   <FaTrash />
                 </button>
               </div>

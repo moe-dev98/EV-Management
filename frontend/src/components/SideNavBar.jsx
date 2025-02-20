@@ -1,26 +1,32 @@
-import { NavLink } from 'react-router-dom';
-import { FaChartLine, FaHome, FaSignOutAlt, FaCar } from 'react-icons/fa';
+import { NavLink } from "react-router-dom";
+import {
+  FaHome,
+  FaSignOutAlt,
+  FaCar,
+  FaBatteryHalf,
+} from "react-icons/fa";
 
 const SideNavBar = () => {
   return (
     <div className="w-64 h-full bg-gray-800 text-white fixed">
       <div className="p-4">
-        <h2 className="text-xl font-bold"> 
+        <h2 className="text-xl font-bold">
           <FaCar className="h-12 w-12" />
         </h2>
       </div>
       <nav className="mt-4">
         <ul>
+
           <li className="p-4 hover:bg-gray-700">
-            <NavLink to="/" exact activeClassName="bg-gray-700">
+            <NavLink to="/analytics" activeClassName="bg-gray-700">
               <FaHome className="inline-block mr-2" />
-              Daily Overview
+              Daily OverView
             </NavLink>
           </li>
           <li className="p-4 hover:bg-gray-700">
-            <NavLink to="/analytics" activeClassName="bg-gray-700">
-              <FaChartLine className="inline-block mr-2" />
-              Analytics
+            <NavLink to="/" exact activeClassName="bg-gray-700">
+              <FaBatteryHalf className="inline-block mr-2" />
+              Charging Stations{" "}
             </NavLink>
           </li>
         </ul>

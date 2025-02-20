@@ -28,6 +28,7 @@ const MapComponent = () => {
 
   return (
     <div>
+      <h2 className="text-center font-bold mb-4">Daily Distribution of Charging Points</h2>
       <MapContainer 
         center={position} 
         zoom={16} 

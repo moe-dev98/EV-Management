@@ -12,7 +12,7 @@ const StationList = () => {
   });
 
   useEffect(() => {
-    fetch('/data/stations.json')
+    fetch('/stations.json')
       .then(response => response.json())
       .then(data => setStations(data))
       .catch(error => console.error('Error fetching station data:', error));
@@ -115,11 +115,11 @@ const StationList = () => {
   });
 
   return (
-    <div>
+    <div className="overflow-x-auto">
       <div className="flex justify-end mb-4">
         <button
           onClick={() => handleModal('isCreateModalOpen', true)}
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 font-sans text-sm flex items-center"
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 font-sans text-sm flex items-center flex-wrap"
         >
           <FaPlus className="mr-2" /> Create Station
         </button>
