@@ -1,0 +1,27 @@
+[
+    { "hour": "00:00", "chargepoint1": 30, "chargepoint2": 30, "chargepoint3": 8 },
+    { "hour": "01:00", "chargepoint1": 26, "chargepoint2": 15, "chargepoint3": 28 },
+    { "hour": "02:00", "chargepoint1": 23, "chargepoint2": 33, "chargepoint3": 10 },
+    { "hour": "03:00", "chargepoint1": 19, "chargepoint2": 36, "chargepoint3": 21 },
+    { "hour": "04:00", "chargepoint1": 6, "chargepoint2": 32, "chargepoint3": 28 },
+    { "hour": "05:00", "chargepoint1": 37, "chargepoint2": 27, "chargepoint3": 12 },
+    { "hour": "06:00", "chargepoint1": 29, "chargepoint2": 23, "chargepoint3": 27 },
+    { "hour": "07:00", "chargepoint1": 9, "chargepoint2": 23, "chargepoint3": 7 },
+    { "hour": "08:00", "chargepoint1": 53, "chargepoint2": 31, "chargepoint3": 52 },
+    { "hour": "09:00", "chargepoint1": 58, "chargepoint2": 39, "chargepoint3": 60 },
+    { "hour": "10:00", "chargepoint1": 34, "chargepoint2": 47, "chargepoint3": 31 },
+    { "hour": "11:00", "chargepoint1": 60, "chargepoint2": 41, "chargepoint3": 47 },
+    { "hour": "12:00", "chargepoint1": 46, "chargepoint2": 57, "chargepoint3": 54 },
+    { "hour": "13:00", "chargepoint1": 49, "chargepoint2": 34, "chargepoint3": 48 },
+    { "hour": "14:00", "chargepoint1": 60, "chargepoint2": 49, "chargepoint3": 37 },
+    { "hour": "15:00", "chargepoint1": 41, "chargepoint2": 54, "chargepoint3": 34 },
+    { "hour": "16:00", "chargepoint1": 55, "chargepoint2": 57, "chargepoint3": 44 },
+    { "hour": "17:00", "chargepoint1": 51, "chargepoint2": 60, "chargepoint3": 46 },
+    { "hour": "18:00", "chargepoint1": 47, "chargepoint2": 36, "chargepoint3": 56 },
+    { "hour": "19:00", "chargepoint1": 57, "chargepoint2": 46, "chargepoint3": 55 },
+    { "hour": "20:00", "chargepoint1": 40, "chargepoint2": 15, "chargepoint3": 8 },
+    { "hour": "21:00", "chargepoint1": 28, "chargepoint2": 28, "chargepoint3": 35 },
+    { "hour": "22:00", "chargepoint1": 17, "chargepoint2": 18, "chargepoint3": 16 },
+    { "hour": "23:00", "chargepoint1": 38, "chargepoint2": 36, "chargepoint3": 22 }
+  ]
+  

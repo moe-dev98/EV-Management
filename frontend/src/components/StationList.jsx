@@ -12,7 +12,7 @@ const StationList = () => {
   });
 
   useEffect(() => {
-    fetch('/stations.json')
+    fetch('/data/stations.json')
       .then(response => response.json())
       .then(data => setStations(data))
       .catch(error => console.error('Error fetching station data:', error));

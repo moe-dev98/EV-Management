@@ -1,0 +1,22 @@
+.number-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.number-card h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.number-card p {
+  margin: 16px 0 0;
+  font-size: 3em;
+  font-weight: bold;
+  color: #007bff;
+}
