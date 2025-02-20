@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "stationName": "Aldi Parkplatz",
+    "stationName": "Parkplatz area 1",
     "position": [48.3715, 10.8988],
     "chargePoints": [
       { "power": 11, "count": 4 },
@@ -9,11 +9,11 @@
     ],
     "carArrivalProbability": 100,
     "consumptionOfCars": 18,
-    "actualMaxPowerDemand": 30 
+    "actualMaxPowerDemand": 90 
   },
   {
     "id": 2,
-    "stationName": "Lidl Parkplatz",
+    "stationName": "Parkplatz area 2",
     "position": [48.3695, 10.8968],
     "chargePoints": [
       { "power": 50, "count": 1 },
@@ -25,7 +25,7 @@
   },
   {
     "id": 3,
-    "stationName": "Edeka Parkplatz",
+    "stationName": "Parkplatz area 3",
     "position": [48.3725, 10.8998],
     "chargePoints": [
       { "power": 11, "count": 6 },
@@ -38,7 +38,7 @@
   },
   {
     "id": 4,
-    "stationName": "Rewe Parkplatz",
+    "stationName": "Parkplatz area 4",
     "position": [48.3685, 10.8958],
     "chargePoints": [
       { "power": 22, "count": 4 },
@@ -50,7 +50,7 @@
   },
   {
     "id": 5,
-    "stationName": "Kaufland Parkplatz",
+    "stationName": "Parkplatz area 4",
     "position": [48.3735, 10.9008],
     "chargePoints": [
       { "power": 11, "count": 3 },

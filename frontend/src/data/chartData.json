@@ -1,4 +1,5 @@
-[
+{
+  "ParkPlatz area 1": [
     { "hour": "00:00", "chargepoint1": 30, "chargepoint2": 30, "chargepoint3": 8 },
     { "hour": "01:00", "chargepoint1": 26, "chargepoint2": 15, "chargepoint3": 28 },
     { "hour": "02:00", "chargepoint1": 23, "chargepoint2": 33, "chargepoint3": 10 },
@@ -23,5 +24,31 @@
     { "hour": "21:00", "chargepoint1": 28, "chargepoint2": 28, "chargepoint3": 35 },
     { "hour": "22:00", "chargepoint1": 17, "chargepoint2": 18, "chargepoint3": 16 },
     { "hour": "23:00", "chargepoint1": 38, "chargepoint2": 36, "chargepoint3": 22 }
+  ],
+  "ParkPlatz area 2": [
+    { "hour": "00:00", "chargepoint1": 20, "chargepoint2": 25, "chargepoint3": 10 },
+    { "hour": "01:00", "chargepoint1": 22, "chargepoint2": 18, "chargepoint3": 20 },
+    { "hour": "02:00", "chargepoint1": 24, "chargepoint2": 20, "chargepoint3": 15 },
+    { "hour": "03:00", "chargepoint1": 26, "chargepoint2": 22, "chargepoint3": 18 },
+    { "hour": "04:00", "chargepoint1": 28, "chargepoint2": 24, "chargepoint3": 20 },
+    { "hour": "05:00", "chargepoint1": 30, "chargepoint2": 26, "chargepoint3": 22 },
+    { "hour": "06:00", "chargepoint1": 32, "chargepoint2": 28, "chargepoint3": 24 },
+    { "hour": "07:00", "chargepoint1": 34, "chargepoint2": 30, "chargepoint3": 26 },
+    { "hour": "08:00", "chargepoint1": 36, "chargepoint2": 32, "chargepoint3": 28 },
+    { "hour": "09:00", "chargepoint1": 38, "chargepoint2": 34, "chargepoint3": 30 },
+    { "hour": "10:00", "chargepoint1": 40, "chargepoint2": 36, "chargepoint3": 32 },
+    { "hour": "11:00", "chargepoint1": 42, "chargepoint2": 38, "chargepoint3": 34 },
+    { "hour": "12:00", "chargepoint1": 44, "chargepoint2": 40, "chargepoint3": 36 },
+    { "hour": "13:00", "chargepoint1": 46, "chargepoint2": 42, "chargepoint3": 38 },
+    { "hour": "14:00", "chargepoint1": 48, "chargepoint2": 44, "chargepoint3": 40 },
+    { "hour": "15:00", "chargepoint1": 50, "chargepoint2": 46, "chargepoint3": 42 },
+    { "hour": "16:00", "chargepoint1": 52, "chargepoint2": 48, "chargepoint3": 44 },
+    { "hour": "17:00", "chargepoint1": 54, "chargepoint2": 50, "chargepoint3": 46 },
+    { "hour": "18:00", "chargepoint1": 56, "chargepoint2": 52, "chargepoint3": 48 },
+    { "hour": "19:00", "chargepoint1": 58, "chargepoint2": 54, "chargepoint3": 50 },
+    { "hour": "20:00", "chargepoint1": 60, "chargepoint2": 56, "chargepoint3": 52 },
+    { "hour": "21:00", "chargepoint1": 62, "chargepoint2": 58, "chargepoint3": 54 },
+    { "hour": "22:00", "chargepoint1": 64, "chargepoint2": 60, "chargepoint3": 56 },
+    { "hour": "23:00", "chargepoint1": 35, "chargepoint2": 30, "chargepoint3": 25 }
   ]
-  
+}

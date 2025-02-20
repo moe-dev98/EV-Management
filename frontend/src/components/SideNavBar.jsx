@@ -8,7 +8,7 @@ import {
 
 const SideNavBar = () => {
   return (
-    <div className="w-64 h-full bg-gray-800 text-white fixed">
+    <div className="w-55 h-full bg-gray-800 text-white fixed">
       <div className="p-4">
         <h2 className="text-xl font-bold">
           <FaCar className="h-12 w-12" />

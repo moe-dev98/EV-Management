@@ -16,7 +16,7 @@ function CreateStationForm({ onClose}) {
     const newErrors = {};
     if (!stationName) newErrors.stationName = 'Station name is required';
     if (probabilityOfArrival < 20 || probabilityOfArrival > 200) newErrors.probabilityOfArrival = 'Probability of arrival must be between 20 and 200';
-    if (!consumptionOfCars) newErrors.consumptionOfCars = 'Consumption of cars is required';
+    if (consumptionOfCars < 10 || consumptionOfCars > 50) newErrors.consumptionOfCars = 'Consumption of cars must be between 10 and 50';
     chargePoints.forEach((point, index) => {
       if (!point.power) newErrors[`power${index}`] = 'Capacity is required';
       if (!point.count) newErrors[`count${index}`] = 'Number of charging points is required';
@@ -43,7 +43,7 @@ function CreateStationForm({ onClose}) {
     e.preventDefault();
     if (validate()) {
       if (window.confirm('Are you sure you want to save this station?')) {
-        const newStation = { stationName, chargePoints, probabilityOfArrival, consumptionOfCars };
+        const newStation = { stationName, chargePoints, probabilityOfArrival, consumptionOfCars: Number(consumptionOfCars) };
         console.log(newStation);
         onClose();
       }
@@ -74,19 +74,17 @@ function CreateStationForm({ onClose}) {
               onChange={(e) => setProbabilityOfArrival(e.target.value)}
               className="border p-2 w-full"
               placeholder="Enter probability of arrival (20-200%)"
-              min="20"
-              max="200"
             />
             {errors.probabilityOfArrival && <p className="text-red-500">{errors.probabilityOfArrival}</p>}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Consumption of Cars</label>
+            <label className="block text-gray-700 mb-2">Consumption of Cars in (Kw)</label>
             <input
-              type="text"
+              type="number"
               value={consumptionOfCars}
               onChange={(e) => setConsumptionOfCars(e.target.value)}
               className="border p-2 w-full"
-              placeholder="Enter consumption of cars"
+              placeholder="Enter consumption of cars (10-50)"
             />
             {errors.consumptionOfCars && <p className="text-red-500">{errors.consumptionOfCars}</p>}
           </div>

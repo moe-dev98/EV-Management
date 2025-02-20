@@ -16,7 +16,7 @@ const Analytics = () => {
         </div>
       </div>
       <div className='w-full mt-5'>
-        <LineChartCard title="Daily Charging values (in kW) per chargepoint" dataKey1="chargepoint1" dataKey2="chargepoint2" dataKey3="chargepoint3" />
+        <LineChartCard title="Daily Charging values (in Kw) per chargepoint" dataKey1="chargepoint1" dataKey2="chargepoint2" dataKey3="chargepoint3" />
       </div>
     </div>
   );
