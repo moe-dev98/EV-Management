@@ -12,10 +12,22 @@
     cd backend
     ```
 
-2. Run the FastAPI application using the provided script:
+2. Install the needed requirements
+
+    ```sh
+        pip install -r requirements.txt
+    ```
+
+3. Give execution permission to the script:
+
+    ```sh
+    chmod +x start.sh
+    ```
+
+4. Run the FastAPI application using the provided script:
 
     ```sh
     ./run.sh
     ```
 
-3. Open your browser and go to `http://127.0.0.1:8000/health` to check the health status.
+5. Open your browser and go to `http://127.0.0.1:8000/health` to check the health status.
