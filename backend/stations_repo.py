@@ -1,21 +1,21 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from models import Station, ChargePoint
 
 class StationsRepo:
-    def create_station(self, db: Session, station: Station):
+    def create_station(self, db: Session, station: Station) -> Station:
         with db.begin():
             db.add(station)
         db.commit()
         db.refresh(station)
         return station
 
-    def get_station(self, db: Session, station_id: int):
-        return db.query(Station).filter(Station.id == station_id).first()
+    def get_station(self, db: Session, station_id: int) -> Station:
+        return db.query(Station).filter(Station.id == station_id).options(joinedload(Station.charge_points)).first()
 
-    def get_stations(self, db: Session, skip: int = 0, limit: int = 10):
-        return db.query(Station).offset(skip).limit(limit).all()
+    def get_stations(self, db: Session) -> list[Station]:
+        return db.query(Station).all()
 
-    def upsert_station(self, db: Session, station: Station, charge_points: list[ChargePoint]):
+    def upsert_station(self, db: Session, station: Station, charge_points: list[ChargePoint]) -> Station:
         db_station = db.query(Station).filter(Station.id == station.id).first()
         if db_station:
             db_station.station_name = station.station_name
@@ -23,7 +23,6 @@ class StationsRepo:
             db_station.position_long = station.position_long
             db_station.car_arrival_probability = station.car_arrival_probability
             db_station.consumption_of_cars = station.consumption_of_cars
-            db_station.actual_max_power_demand = station.actual_max_power_demand
         else:
             db_station = station
             db.add(db_station)
@@ -38,3 +37,14 @@ class StationsRepo:
         db.commit()
         db.refresh(db_station)
         return db_station
+
+    def delete_station(self, db: Session, station_id: int) -> bool:
+        db_station = db.query(Station).filter(Station.id == station_id).first()
+        if db_station:
+            db.delete(db_station)
+            db.commit()
+            return True
+        return False
+
+    def station_name_exists(self, db: Session, station_name: str) -> bool:
+        return db.query(Station).filter(Station.station_name == station_name).first() is not None

@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 
@@ -12,7 +11,6 @@ class Station(Base):
     position_long = Column(Float)
     car_arrival_probability = Column(Integer)
     consumption_of_cars = Column(Integer)
-    actual_max_power_demand = Column(Float)
     charge_points = relationship("ChargePoint", back_populates="station")
 
 class ChargePoint(Base):
