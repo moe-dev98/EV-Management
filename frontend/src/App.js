@@ -2,9 +2,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import CreateStationForm from './components/CreateStationForm';
-import SideNavBar from './components/SideNavBar'; // Import the SideNavBar component
-import Analytics from './pages/Analytics'; // Import the Analytics component
-
+import SideNavBar from './components/SideNavBar'; 
+import DailyOverView from './pages/DailyOverView';
+import Analytics from './pages/Analytics'; 
 function App() {
   return (
     <Router>
@@ -14,7 +14,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/create-station" element={<CreateStationForm />} />
+            <Route path="/Daily-overview" element={<DailyOverView />} /> 
             <Route path="/analytics" element={<Analytics />} /> 
+
           </Routes>
         </div>
       </div>

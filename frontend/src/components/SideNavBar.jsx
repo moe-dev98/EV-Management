@@ -4,6 +4,7 @@ import {
   FaSignOutAlt,
   FaCar,
   FaBatteryHalf,
+  FaChartBar,
 } from "react-icons/fa";
 
 const SideNavBar = () => {
@@ -18,15 +19,21 @@ const SideNavBar = () => {
         <ul>
 
           <li className="p-4 hover:bg-gray-700">
-            <NavLink to="/analytics" activeClassName="bg-gray-700">
+            <NavLink to="/daily-overview" activeClassName="bg-gray-700">
               <FaHome className="inline-block mr-2" />
               Daily OverView
             </NavLink>
           </li>
           <li className="p-4 hover:bg-gray-700">
+            <NavLink to="/analytics" exact activeClassName="bg-gray-700">
+              <FaChartBar className="inline-block mr-2" />
+              Analytics
+            </NavLink>
+          </li>
+          <li className="p-4 hover:bg-gray-700">
             <NavLink to="/" exact activeClassName="bg-gray-700">
               <FaBatteryHalf className="inline-block mr-2" />
-              Charging Stations{" "}
+              Charging Stations
             </NavLink>
           </li>
         </ul>

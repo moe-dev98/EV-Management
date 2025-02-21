@@ -1,22 +1,47 @@
+import { useState, useEffect } from 'react';
+import { FaFilter } from 'react-icons/fa';
+import BarChartCard from '../components/BarChartCard';
 import NumberCard from '../components/NumberCard';
-import MapComponent from '../components/MapComponent';
-import LineChartCard from '../components/LineChartCard';
 
 const Analytics = () => {
+  const [timePeriod, setTimePeriod] = useState('daily');
+  const [totalEvents, setTotalEvents] = useState(1234);
+  const [totalEnergy, setTotalEnergy] = useState(500); 
+  const handleTimePeriodChange = (event) => {
+    setTimePeriod(event.target.value);
+  };
+
+  useEffect(() => {
+    const randomChange = {
+      daily: Math.floor(Math.random() * 100) + 50,
+      weekly: Math.floor(Math.random() * 500) + 200,
+      monthly: Math.floor(Math.random() * 1000) + 500,
+      yearly: Math.floor(Math.random() * 5000) + 2000
+    }[timePeriod];
+    setTotalEvents(1000 + randomChange);
+    setTotalEnergy(500 + randomChange / 2); 
+  }, [timePeriod]);
+
   return (
     <div className="p-4">
-      <div className="flex flex-wrap lg:flex-nowrap">
-        <div className='w-full lg:w-1/3 flex flex-col gap-5 mb-5 lg:mb-0'>
-          <NumberCard title="Number Of Charging Events " number={132} />
-          <NumberCard title="Current Concurrency Factor (%)" number={55} />
-          <NumberCard title="Total Energy Charged (Kwh)" number={12345} />
-        </div>
-        <div className="w-full lg:w-2/3 h-auto lg:h-auto lg:ml-5"> 
-          <MapComponent />
-        </div>
+      <div className="mb-4 flex items-center space-x-2">
+        <button className="p-2 border rounded flex items-center space-x-1">
+          <FaFilter />
+          <span>Date</span>
+        </button>
+        <select id="timePeriod" value={timePeriod} onChange={handleTimePeriodChange} className="p-2 border rounded">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
       </div>
-      <div className='w-full mt-5'>
-        <LineChartCard title="Daily Charging values (in Kw) per chargepoint" dataKey1="chargepoint1" dataKey2="chargepoint2" dataKey3="chargepoint3" />
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        <NumberCard title="Total Charging Events" number={totalEvents} />
+        <NumberCard title="Overall Energy Consumption in Kwh" number={totalEnergy} />
+      </div>
+      <div className='mt-4'>
+        <BarChartCard title="Charging Events" timePeriod={timePeriod} />
       </div>
     </div>
   );
