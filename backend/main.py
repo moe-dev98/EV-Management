@@ -8,14 +8,14 @@ from pydantic import BaseModel
 from models import Base, Station, ChargePoint
 import logging
 from typing import List, Generator
-from fastapi.middleware.cors import CORSMiddleware  # Import CORS middleware
+from fastapi.middleware.cors import CORSMiddleware 
 
 app = FastAPI()
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Allow access from this origin
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -88,15 +88,8 @@ def create_charge_points(
 def create_station(station: StationRequest, db: Session = Depends(get_db)):
     logger.info(f"Creating station: {station.station_name}")
 
-    # # Check if the station name already exists
-    # if _stations_repo.station_name_exists(db=db, station_name=station.station_name):
-    #     logger.warning(f"Station with name {station.station_name} already exists")
-    #     raise HTTPException(status_code=400, detail="Station with this name already exists")
-
     db_station = Station(
         station_name=station.station_name,
-        # position_lat=station.position_lat,
-        # position_long=station.position_long,
         car_arrival_probability=station.car_arrival_probability,
         consumption_of_cars=station.consumption_of_cars,
     )
@@ -141,8 +134,6 @@ def update_station(
         raise HTTPException(status_code=404, detail="Station not found")
 
     db_station.station_name = station.station_name
-    # db_station.position_lat = station.position_lat
-    # db_station.position_long = station.position_long
     db_station.car_arrival_probability = station.car_arrival_probability
     db_station.consumption_of_cars = station.consumption_of_cars
 

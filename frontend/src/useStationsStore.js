@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_BASE_URL = "http://0.0.0.0:8001/stations/"; // Your FastAPI endpoint
+const API_BASE_URL = "http://0.0.0.0:8001/stations/";
 
 export const useStationStore = create((set) => ({
     stations: [],
@@ -9,7 +9,6 @@ export const useStationStore = create((set) => ({
     loading: false,
     error: null,
 
-    // Fetch all stations
     fetchStations: async () => {
         set({ loading: true, error: null });
         try {
@@ -32,7 +31,6 @@ export const useStationStore = create((set) => ({
         }
     },
 
-    // Update a station
     updateStation: async (id, updatedStation) => {
         try {
             const response = await axios.put(`${API_BASE_URL}${id}`, updatedStation);
@@ -46,7 +44,6 @@ export const useStationStore = create((set) => ({
         }
     },
 
-    // Delete a station
     deleteStation: async (id) => {
         try {
             await axios.delete(`${API_BASE_URL}${id}`);
@@ -58,7 +55,6 @@ export const useStationStore = create((set) => ({
         }
     },
 
-    // Get a station by ID
     getStationById: async (id) => {
         try {
             const response = await axios.get(`${API_BASE_URL}${id}`);
@@ -69,9 +65,7 @@ export const useStationStore = create((set) => ({
         }
     },
 
-    // Set selected station
     setSelectedStation: (station) => set({ selectedStation: station }),
 
-    // Clear selected station
     clearSelectedStation: () => set({ selectedStation: null }),
 }));

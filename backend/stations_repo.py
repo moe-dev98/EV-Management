@@ -51,10 +51,3 @@ class StationsRepo:
             db.commit()
             return True
         return False
-
-    def station_name_exists(self, db: Session, station_name: str) -> bool:
-        with db.begin_nested():
-            return (
-                db.query(Station).filter(Station.station_name == station_name).first()
-                is not None
-            )

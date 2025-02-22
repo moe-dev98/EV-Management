@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The front end of the EV-Management project is a React application that uses Zustand to manage the state of one entity called "stations". It also uses Leaflet as a map library and rescharts for building charts.
+
 
 ## Available Scripts
 
@@ -18,17 +19,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+### Pages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The app contains three main pages:
 
-### `npm run build`
+1. **Daily Overview**
+    This page answers the following questions:
+     - You are tasked with visualizing the output
+     - The charging values (in kW) per chargepoint at a useful aggregation level
+     - An exemplary day
+     - The total energy charged (in kWh)
+     
+    Please note that the data used is generated randomly and is just mocked
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Analytics**
+     This page answers the following questions:
+     - You are tasked with visualizing the output
+     - The number of charging events per year/month/week/day.
+     - The deviation of the concurrency factor from the bonus task could be displayed (if
+the previous bonus task was completed).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Charging Stations**
+This page answers the following questions
+     - You are tasked with visualizing the input parameters.
+     - Create a UI to allow creating different types of chargepoints (e.g. 5 x 11kW, 3 x
+22kW, 1 x 50kW).
