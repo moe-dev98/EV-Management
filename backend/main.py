@@ -48,7 +48,7 @@ class ChargePointCreate(BaseModel):
 
 
 class StationRequest(BaseModel):
-    ©: str
+    name: str
     car_arrival_probability: int
     consumption_of_cars: int
     charge_points: List[ChargePointCreate]
@@ -66,7 +66,7 @@ class ChargePointResponse(BaseModel):
 
 class StationResponse(BaseModel):
     id: int
-    station_name: str
+    name: str
     car_arrival_probability: int
     consumption_of_cars: int
     charge_points: List[ChargePointResponse]
@@ -86,10 +86,10 @@ def create_charge_points(
 
 @app.post("/stations/")
 def create_station(station: StationRequest, db: Session = Depends(get_db)):
-    logger.info(f"Creating station: {station.station_name}")
+    logger.info(f"Creating station: {station.name}")
 
     db_station = Station(
-        station_name=station.station_name,
+        name=station.name,
         car_arrival_probability=station.car_arrival_probability,
         consumption_of_cars=station.consumption_of_cars,
     )
@@ -100,7 +100,7 @@ def create_station(station: StationRequest, db: Session = Depends(get_db)):
     _stations_repo.upsert_station(
         db=db, station=db_station, charge_points=charge_points
     )
-    logger.info(f"Station created with name: {station.station_name}")
+    logger.info(f"Station created with name: {station.name}")
     return {"message": "Station created successfully"}
 
 
@@ -109,7 +109,7 @@ def read_station(station_id: int, db: Session = Depends(get_db)):
     logger.info(f"Fetching station with ID: {station_id}")
     station = _stations_repo.get_station(db=db, station_id=station_id)
     if station:
-        logger.info(f"Station found: {station.station_name}")
+        logger.info(f"Station found: {station.name}")
         return station
     logger.warning(f"Station with ID {station_id} not found")
     raise HTTPException(status_code=404, detail="Station not found")
@@ -133,7 +133,7 @@ def update_station(
         logger.warning(f"Station with ID {station_id} not found")
         raise HTTPException(status_code=404, detail="Station not found")
 
-    db_station.station_name = station.station_name
+    db_station.name = station.name
     db_station.car_arrival_probability = station.car_arrival_probability
     db_station.consumption_of_cars = station.consumption_of_cars
 

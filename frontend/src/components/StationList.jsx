@@ -32,7 +32,7 @@ const StationList = () => {
   useEffect(() => {
     const data = stations.map((station) => ({
       id: station.id,
-      stationName: station.station_name,
+      stationName: station.name,
       positionLat: station.position_lat,
       positionLong: station.position_long,
       carArrivalProbability: station.car_arrival_probability,
@@ -99,19 +99,19 @@ const StationList = () => {
           <div className="flex justify-center space-x-2">
             <button
               onClick={() => handleModal('selectedStation', row.original.actions)}
-              className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 flex items-center"
+              className="text-blue-500 py-1 px-3 rounded border border-blue-500 hover:text-blue-700 flex items-center"
             >
               <FaChartBar className="mr-2" /> Distribution
             </button>
             <button
               onClick={() => handleEditStation(row.original.actions.id)}
-              className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600 flex items-center"
+              className="text-yellow-500 py-1 px-3 rounded border border-yellow-500 hover:text-yellow-700 flex items-center"
             >
               Edit
             </button>
             <button
               onClick={() => handleDeleteStation(row.original.actions.id)}
-              className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 flex items-center"
+              className="text-red-500 py-1 px-3 rounded border border-red-500 hover:text-red-700 flex items-center"
             >
               <FaTrash className="mr-2" /> Delete
             </button>
@@ -137,7 +137,7 @@ const StationList = () => {
             clearSelectedStation();
             handleModal('isCreateModalOpen', true);
           }}
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 font-sans text-sm flex items-center flex-wrap"
+          className="text-blue-500 py-2 px-4 rounded border border-blue-500 hover:text-blue-700 font-sans text-sm flex items-center flex-wrap"
         >
           <FaPlus className="mr-2" /> Create Station
         </button>

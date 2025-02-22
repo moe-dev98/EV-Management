@@ -17,13 +17,13 @@ def test_create_station(mock_repo, test_client):
     mock_repo.create_station.return_value = None
 
     # Mock the upsert_station method
-    mock_repo.upsert_station.return_value = MagicMock(id=1, station_name="Test Station")
+    mock_repo.upsert_station.return_value = MagicMock(id=1, name="Test Station")
 
     # Create station
     response = test_client.post(
         "/stations/",
         json={
-            "station_name": "Test Station",
+            "name": "Test Station",
             "position_lat": 12.34,
             "position_long": 56.78,
             "car_arrival_probability": 50,
@@ -41,7 +41,7 @@ def test_read_station(mock_repo, test_client):
     # Mock the get_station method
     mock_repo.get_station.return_value = MagicMock(
         id=1,
-        station_name="Test Station",
+        name="Test Station",
         position_lat=12.34,
         position_long=56.78,
         car_arrival_probability=50,
@@ -55,7 +55,7 @@ def test_read_station(mock_repo, test_client):
     # Read station
     response = test_client.get("/stations/1")
     assert response.status_code == 200
-    assert response.json()["station_name"] == "Test Station"
+    assert response.json()["name"] == "Test Station"
     assert response.json()["position_lat"] == 12.34
     assert response.json()["position_long"] == 56.78
     assert response.json()["car_arrival_probability"] == 50
@@ -73,7 +73,7 @@ def test_read_stations(mock_repo, test_client):
     mock_repo.get_stations.return_value = [
         MagicMock(
             id=1,
-            station_name="Test Station 1",
+            name="Test Station 1",
             position_lat=12.34,
             position_long=56.78,
             car_arrival_probability=50,
@@ -85,7 +85,7 @@ def test_read_stations(mock_repo, test_client):
         ),
         MagicMock(
             id=2,
-            station_name="Test Station 2",
+            name="Test Station 2",
             position_lat=23.45,
             position_long=67.89,
             car_arrival_probability=60,
@@ -101,8 +101,8 @@ def test_read_stations(mock_repo, test_client):
     response = test_client.get("/stations/")
     assert response.status_code == 200
     assert len(response.json()) == 2
-    assert response.json()[0]["station_name"] == "Test Station 1"
-    assert response.json()[1]["station_name"] == "Test Station 2"
+    assert response.json()[0]["name"] == "Test Station 1"
+    assert response.json()[1]["name"] == "Test Station 2"
 
 
 @patch("main._stations_repo")
@@ -110,7 +110,7 @@ def test_update_station(mock_repo, test_client):
     # Mock the get_station method
     mock_repo.get_station.return_value = MagicMock(
         id=1,
-        station_name="Test Station",
+        name="Test Station",
         position_lat=12.34,
         position_long=56.78,
         car_arrival_probability=50,
@@ -120,14 +120,14 @@ def test_update_station(mock_repo, test_client):
 
     # Mock the upsert_station method
     mock_repo.upsert_station.return_value = MagicMock(
-        id=1, station_name="Updated Station"
+        id=1, name="Updated Station"
     )
 
     # Update station
     response = test_client.put(
         "/stations/1",
         json={
-            "station_name": "Updated Station",
+            "name": "Updated Station",
             "position_lat": 23.45,
             "position_long": 67.89,
             "car_arrival_probability": 60,
@@ -145,7 +145,7 @@ def test_delete_station(mock_repo, test_client):
     mock_repo.get_station.side_effect = [
         MagicMock(
             id=1,
-            station_name="Test Station",
+            name="Test Station",
             position_lat=12.34,
             position_long=56.78,
             car_arrival_probability=50,

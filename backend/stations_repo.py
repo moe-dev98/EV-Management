@@ -26,7 +26,7 @@ class StationsRepo:
     ) -> Station:
         db_station = db.query(Station).filter(Station.id == station.id).first()
         if db_station:
-            db_station.station_name = station.station_name
+            db_station.name = station.name
             db_station.car_arrival_probability = station.car_arrival_probability
             db_station.consumption_of_cars = station.consumption_of_cars
         else:

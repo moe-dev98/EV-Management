@@ -7,7 +7,7 @@ Base = declarative_base()
 class Station(Base):
     __tablename__ = "stations"
     id = Column(Integer, primary_key=True, index=True)
-    station_name = Column(String, index=True)
+    name = Column(String, index=True)
     car_arrival_probability = Column(Integer)
     consumption_of_cars = Column(Integer)
     charge_points = relationship("ChargePoint", back_populates="station")

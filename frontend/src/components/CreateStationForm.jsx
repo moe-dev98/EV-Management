@@ -12,7 +12,7 @@ function CreateStationForm({ onClose }) {
 
   useEffect(() => {
     if (selectedStation) {
-      setStationName(selectedStation.station_name);
+      setStationName(selectedStation.name);
       setChargePoints(selectedStation.charge_points);
       setProbabilityOfArrival(selectedStation.car_arrival_probability);
       setConsumptionOfCars(selectedStation.consumption_of_cars);
@@ -60,7 +60,7 @@ function CreateStationForm({ onClose }) {
       if (window.confirm(confirmationMessage)) {
         const sanitizedChargePoints = chargePoints.map(({ power, count }) => ({ power, count }));
         const newStation = { 
-          station_name: stationName, 
+          name: stationName, 
           charge_points: sanitizedChargePoints.length ? sanitizedChargePoints : [{ power: 11, count: 1 }], // Ensure chargePoints is always an array with at least one element
           car_arrival_probability: probabilityOfArrival, 
           consumption_of_cars: Number(consumptionOfCars) 
@@ -176,7 +176,7 @@ function CreateStationForm({ onClose }) {
           </div>
 
           <div className="flex justify-end space-x-4 mt-4">
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center">
+            <button type="submit" className="text-blue-500 py-2 px-4 rounded border border-blue-500 hover:text-blue-700 flex items-center">
               <FaSave className="mr-2" /> Save Station
             </button>
             <button
@@ -185,7 +185,7 @@ function CreateStationForm({ onClose }) {
                 clearSelectedStation();
                 onClose();
               }}
-              className="bg-red-500 text-white px-4 py-2 rounded-md flex items-center"
+              className="text-red-500 py-2 px-4 rounded border border-red-500 hover:text-red-700 flex items-center"
             >
               <FaTimes className="mr-2" /> Close
             </button>
