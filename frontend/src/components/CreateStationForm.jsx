@@ -48,13 +48,16 @@ function CreateStationForm({ onClose }) {
   };
 
   const removeChargePoint = (index) => {
-    setChargePoints(chargePoints.filter((_, i) => i !== index));
+    if (chargePoints.length > 1) {
+      setChargePoints(chargePoints.filter((_, i) => i !== index));
+    }
   };
 
   const handleSave = async (e) => {
     e.preventDefault();
     if (validate()) {
-      if (window.confirm('Are you sure you want to save this station?')) {
+      const confirmationMessage = selectedStation ? 'Are you sure you want to edit this station?' : 'Are you sure you want to save this station?';
+      if (window.confirm(confirmationMessage)) {
         const sanitizedChargePoints = chargePoints.map(({ power, count }) => ({ power, count }));
         const newStation = { 
           station_name: stationName, 
@@ -156,7 +159,12 @@ function CreateStationForm({ onClose }) {
                   </select>
                   {errors[`power${index}`] && <p className="text-red-500">{errors[`power${index}`]}</p>}
                 </div>
-                <button type="button" onClick={() => removeChargePoint(index)} className="text-red-500 mt-6">
+                <button 
+                  type="button" 
+                  onClick={() => removeChargePoint(index)} 
+                  className={`text-red-500 mt-6 ${chargePoints.length === 1 ? 'hidden' : ''}`}
+                  title="Remove charge point"
+                >
                   <FaTrash />
                 </button>
               </div>

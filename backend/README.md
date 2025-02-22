@@ -32,7 +32,13 @@ This is a FastAPI application using PostgreSQL to create APIs related to an enti
     ./start.sh
     ```
 
-5. Open your browser and go to `http://127.0.0.1:8000/health` to check the health status.
+5. Run tests:
+
+    ```sh
+    pytest test_main.py
+    ```
+
+6. Open your browser and go to `http://127.0.0.1:8000/health` to check the health status.
 
 ## Generating Data
 

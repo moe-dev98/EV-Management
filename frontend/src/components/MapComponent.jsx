@@ -7,7 +7,7 @@ const MapComponent = () => {
   const [stations, setStations] = useState([]);
 
   useEffect(() => {
-    fetch('/stations.json')
+    fetch('/MockStations.json')
       .then(response => response.json())
       .then(data => setStations(data));
   }, []);
@@ -27,7 +27,7 @@ const MapComponent = () => {
   };
 
   return (
-    <div>
+    <div className="bg-white shadow-md rounded p-4">
       <h2 className="text-center font-bold mb-4">Daily Distribution of Charging Points</h2>
       <MapContainer 
         center={position} 

@@ -1,10 +1,17 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import data from '../data/chartData.json';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const LineChartCard = ({ title, dataKey1, dataKey2, dataKey3 }) => {
+const LineChartCard = ({ title, data }) => {
   const [hiddenLines, setHiddenLines] = useState([]);
-  const [selectedStation, setSelectedStation] = useState(Object.keys(data)[0]);
+  const [selectedStation, setSelectedStation] = useState(data ? Object.keys(data)[0] : '');
+  const [dataKeys, setDataKeys] = useState([]);
+
+  useEffect(() => {
+    if (data && selectedStation) {
+      const keys = Object.keys(data[selectedStation][0]).filter(key => key !== 'hour');
+      setDataKeys(keys);
+    }
+  }, [data, selectedStation]);
 
   const handleLegendClick = (dataKey) => {
     setHiddenLines((prev) =>
@@ -34,8 +41,12 @@ const LineChartCard = ({ title, dataKey1, dataKey2, dataKey3 }) => {
     setSelectedStation(event.target.value);
   };
 
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div>
+    <div className="bg-white shadow-md rounded p-4">
       <h2 className="text-center font-bold">{title}</h2>
       <div className="text-center mb-4">
         <select id="station-select" value={selectedStation} onChange={handleStationChange}>
@@ -51,9 +62,15 @@ const LineChartCard = ({ title, dataKey1, dataKey2, dataKey3 }) => {
           <YAxis />
           <Tooltip />
           <Legend content={renderLegend} />
-          <Line type="monotone" dataKey={dataKey1} stroke="#8884d8" hide={hiddenLines.includes(dataKey1)} />
-          <Line type="monotone" dataKey={dataKey2} stroke="#82ca9d" hide={hiddenLines.includes(dataKey2)} />
-          <Line type="monotone" dataKey={dataKey3} stroke="#ffc658" hide={hiddenLines.includes(dataKey3)} />
+          {dataKeys.map((key, index) => (
+            <Line
+              key={index}
+              type="monotone"
+              dataKey={key}
+              stroke={index === 0 ? "#8884d8" : index === 1 ? "#82ca9d" : "#ffc658"}
+              hide={hiddenLines.includes(key)}
+            />
+          ))}
         </LineChart>
       </ResponsiveContainer>
     </div>

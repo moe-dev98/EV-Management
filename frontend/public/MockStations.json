@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "stationName": "Parkplatz area 1",
+    "position": [48.3715, 10.8988],
+    "chargePoints": [
+      { "power": 11, "count": 4 },
+      { "power": 22, "count": 2 }
+    ],
+    "actualMaxPowerDemand": 80
+  },
+  {
+    "id": 2,
+    "stationName": "Parkplatz area 2",
+    "position": [48.3695, 10.8968],
+    "chargePoints": [
+      { "power": 50, "count": 1 },
+      { "power": 22, "count": 3 }
+    ],
+    "actualMaxPowerDemand": 60 
+  },
+  {
+    "id": 2,
+    "stationName": "Parkplatz area 3",
+    "position": [48.36895, 10.8968],
+    "chargePoints": [
+      { "power": 50, "count": 1 },
+      { "power": 22, "count": 3 }
+    ],
+    "actualMaxPowerDemand": 10 
+  }
+]

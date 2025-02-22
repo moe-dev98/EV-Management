@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { FaFilter } from 'react-icons/fa';
 import BarChartCard from '../components/BarChartCard';
 import NumberCard from '../components/NumberCard';
+import TinyLineChartCard from '../components/TinyLineChartCard';
+import data from '../data/MockChartsData.json';
 
 const Analytics = () => {
   const [timePeriod, setTimePeriod] = useState('daily');
@@ -41,7 +43,10 @@ const Analytics = () => {
         <NumberCard title="Overall Energy Consumption in Kwh" number={totalEnergy} />
       </div>
       <div className='mt-4'>
-        <BarChartCard title="Charging Events" timePeriod={timePeriod} />
+        <BarChartCard title="Charging Events" data={data.chargingEvents} timePeriod={timePeriod} />
+      </div>
+      <div className='mt-4'>
+        <TinyLineChartCard title="Deviation Of The Concurrency Factor (%) " data={data.concurrencyFactor} />
       </div>
     </div>
   );

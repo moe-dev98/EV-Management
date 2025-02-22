@@ -1,7 +1,10 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import data from '../data/chargingEvents.json';
 
-const BarChartCard = ({ title, timePeriod }) => {
+const BarChartCard = ({ title, data, timePeriod }) => {
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="bg-white shadow-md rounded p-4">
       <h2 className="text-center font-bold mb-4">{title}</h2>
