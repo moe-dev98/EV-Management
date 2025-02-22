@@ -33,11 +33,11 @@ const StationList = () => {
     }));
   };
 
-  const handleDeleteStation = (stationId) => {
-    if (window.confirm('Are you sure you want to delete this station?')) { // can be a custom dialogue component as well
-      setStations((prevStations) => prevStations.filter(station => station.id !== stationId));
-    }
-  };
+  // const handleDeleteStation = (stationId) => {
+  //   if (window.confirm('Are you sure you want to delete this station?')) { // can be a custom dialogue component as well
+  //     setStations((prevStations) => prevStations.filter(station => station.id !== stationId));
+  //   }
+  // };
 
   // Define table data
   const data = useMemo(
@@ -94,7 +94,7 @@ const StationList = () => {
               <FaChartBar className="mr-2" /> Distribution
             </button>
             <button
-              onClick={() => handleDeleteStation(row.original.actions.id)}
+              // onClick={() => handleDeleteStation(row.original.actions.id)}
               className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 flex items-center"
             >
               <FaTrash className="mr-2" /> Delete

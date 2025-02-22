@@ -47,4 +47,5 @@ class StationsRepo:
         return False
 
     def station_name_exists(self, db: Session, station_name: str) -> bool:
-        return db.query(Station).filter(Station.station_name == station_name).first() is not None
+        with db.begin_nested():
+            return db.query(Station).filter(Station.station_name == station_name).first() is not None

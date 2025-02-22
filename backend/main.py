@@ -67,10 +67,10 @@ def create_charge_points(station_id: int, charge_points_data: List[ChargePointCr
 def create_station(station: StationRequest, db: Session = Depends(get_db)):
     logger.info(f"Creating station: {station.station_name}")
     
-    # Check if the station name already exists
-    if _stations_repo.station_name_exists(db=db, station_name=station.station_name):
-        logger.warning(f"Station with name {station.station_name} already exists")
-        raise HTTPException(status_code=400, detail="Station with this name already exists")
+    # # Check if the station name already exists
+    # if _stations_repo.station_name_exists(db=db, station_name=station.station_name):
+    #     logger.warning(f"Station with name {station.station_name} already exists")
+    #     raise HTTPException(status_code=400, detail="Station with this name already exists")
     
     db_station = Station(
         station_name=station.station_name,
