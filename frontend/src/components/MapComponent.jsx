@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Circle, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const MapComponent = () => {
-  const position = [48.3705, 10.8978]; // Position for Augsburg, Germany
+  const position = [48.3705, 10.8978];
   const [stations, setStations] = useState([]);
 
   useEffect(() => {

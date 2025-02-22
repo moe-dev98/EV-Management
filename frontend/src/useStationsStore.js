@@ -5,7 +5,7 @@ const API_BASE_URL = "http://0.0.0.0:8001/stations/";
 
 export const useStationStore = create((set) => ({
     stations: [],
-    selectedStation: null, // Add state for selected station
+    selectedStation: null, 
     loading: false,
     error: null,
 

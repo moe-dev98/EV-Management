@@ -6,7 +6,7 @@
 Every application contains a README that explains how to run it. Please refer to the README file in each application directory for detailed instructions on how to set up and run the project.
 
 
-## How to Run 
+## Details 
 
 I was asked to do task 1 and task 2a . Both these tasks were completed and all bonus points questions have been answered except for 
 

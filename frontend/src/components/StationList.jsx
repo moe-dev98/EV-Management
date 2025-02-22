@@ -55,7 +55,7 @@ const StationList = () => {
   const handleDeleteStation = useCallback(async (stationId) => {
     if (window.confirm('Are you sure you want to delete this station?')) { // can be a custom dialogue component as well
       await deleteStation(stationId);    }
-  }, [deleteStation, fetchStations]);
+  }, [deleteStation]);
 
   const handleEditStation = useCallback(async (stationId) => {
     const station = await getStationById(stationId);
@@ -126,7 +126,7 @@ const StationList = () => {
     data: calculatedData,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    columnResizeMode: 'onChange', // Enable column resizing
+    columnResizeMode: 'onChange',
   });
 
   return (

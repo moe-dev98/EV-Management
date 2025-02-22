@@ -48,7 +48,7 @@ class ChargePointCreate(BaseModel):
 
 
 class StationRequest(BaseModel):
-    station_name: str
+    ©: str
     car_arrival_probability: int
     consumption_of_cars: int
     charge_points: List[ChargePointCreate]
