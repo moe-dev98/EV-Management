@@ -147,7 +147,7 @@ const StationList = () => {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className="py-2 px-4 border-b bg-gray-100" style={{ width: header.column.getSize() }}>
+                <th key={header.id} className="py-2 px-4 border-b bg-gray-100 text-left" style={{ width: header.column.getSize() }}>
                   {flexRender(header.column.columnDef.header, header.getContext())}
                 </th>
               ))}
@@ -158,7 +158,7 @@ const StationList = () => {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id} className="hover:bg-gray-50">
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="py-2 px-4 border-b" style={{ width: cell.column.getSize() }}>
+                <td key={cell.id} className="py-2 px-4 border-b text-left" style={{ width: cell.column.getSize() }}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
