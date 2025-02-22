@@ -3,20 +3,17 @@ import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-tabl
 import ChargePointModal from './ChargePointModal';
 import CreateStationForm from './CreateStationForm';
 import { FaPlus, FaTrash, FaChartBar } from 'react-icons/fa'; // Import icons
+import { useStationStore } from '../useStationsStore'; // Import the store
 
 const StationList = () => {
-  const [stations, setStations] = useState([]);
+  const { stations, fetchStations, deleteStation, getStationById, setSelectedStation, clearSelectedStation } = useStationStore();
   const [modalState, setModalState] = useState({
-    selectedStation: null,
     isCreateModalOpen: false,
   });
 
   useEffect(() => {
-    fetch('/stations.json')
-      .then(response => response.json())
-      .then(data => setStations(data))
-      .catch(error => console.error('Error fetching station data:', error));
-  }, []);
+    fetchStations(); // Fetch stations from the API
+  }, [fetchStations]);
 
   const calculateTotalChargePoints = (chargePoints) => {
     return chargePoints.reduce((total, cp) => total + cp.count, 0);
@@ -33,21 +30,31 @@ const StationList = () => {
     }));
   };
 
-  // const handleDeleteStation = (stationId) => {
-  //   if (window.confirm('Are you sure you want to delete this station?')) { // can be a custom dialogue component as well
-  //     setStations((prevStations) => prevStations.filter(station => station.id !== stationId));
-  //   }
-  // };
+  const handleDeleteStation = (stationId) => {
+    if (window.confirm('Are you sure you want to delete this station?')) { // can be a custom dialogue component as well
+      deleteStation(stationId);
+    }
+  };
+
+  const handleEditStation = async (stationId) => {
+    const station = await getStationById(stationId);
+    setSelectedStation(station);
+    handleModal('isCreateModalOpen', true);
+  };
 
   // Define table data
   const data = useMemo(
     () =>
       stations.map((station) => ({
-        name: station.stationName,
-        totalChargePoints: calculateTotalChargePoints(station.chargePoints),
-        maxCapacity: calculateMaxCapacity(station.chargePoints),
-        carArrivalProbability: station.carArrivalProbability, 
-        consumptionOfCars: station.consumptionOfCars, 
+        id: station.id,
+        stationName: station.station_name,
+        positionLat: station.position_lat,
+        positionLong: station.position_long,
+        carArrivalProbability: station.car_arrival_probability,
+        consumptionOfCars: station.consumption_of_cars,
+        totalChargePoints: calculateTotalChargePoints(station.charge_points),
+        maxCapacity: calculateMaxCapacity(station.charge_points),
+        chargePoints: station.charge_points,
         actions: station,
       })),
     [stations]
@@ -58,7 +65,7 @@ const StationList = () => {
     () => [
       {
         header: 'Charging Station Name',
-        accessorKey: 'name',
+        accessorKey: 'stationName',
         size: 150,
       },
       {
@@ -94,7 +101,13 @@ const StationList = () => {
               <FaChartBar className="mr-2" /> Distribution
             </button>
             <button
-              // onClick={() => handleDeleteStation(row.original.actions.id)}
+              onClick={() => handleEditStation(row.original.actions.id)}
+              className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600 flex items-center"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => handleDeleteStation(row.original.actions.id)}
               className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 flex items-center"
             >
               <FaTrash className="mr-2" /> Delete
@@ -106,7 +119,6 @@ const StationList = () => {
     []
   );
 
-  // Create table instance
   const table = useReactTable({
     data,
     columns,
@@ -118,7 +130,10 @@ const StationList = () => {
     <div className="overflow-x-auto">
       <div className="flex justify-end mb-4">
         <button
-          onClick={() => handleModal('isCreateModalOpen', true)}
+          onClick={() => {
+            clearSelectedStation();
+            handleModal('isCreateModalOpen', true);
+          }}
           className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 font-sans text-sm flex items-center flex-wrap"
         >
           <FaPlus className="mr-2" /> Create Station
@@ -154,7 +169,7 @@ const StationList = () => {
       )}
 
       {modalState.isCreateModalOpen && (
-        <CreateStationForm onClose={() => handleModal('isCreateModalOpen', false)}/>
+        <CreateStationForm onClose={() => handleModal('isCreateModalOpen', false)} />
       )}
     </div>
   );

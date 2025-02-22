@@ -2,7 +2,6 @@
 export PGPASSWORD="postgres"
 export DATABASE_URL="postgresql://postgres:postgres@localhost/ev-management"
 
-
 # Create the database if it doesn't exist
 psql -h localhost -p 5432 -U postgres -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'ev-management'" | grep -q 1 || psql -h localhost -p 5432 -U postgres -d postgres -c "CREATE DATABASE \"ev-management\""
 

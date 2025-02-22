@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
-import { FaPlus, FaTrash, FaSave, FaTimes } from 'react-icons/fa'; // Import icons
+import React, { useState, useEffect } from 'react';
+import { FaPlus, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
+import { useStationStore } from '../useStationsStore';
 
-function CreateStationForm({ onClose}) {
+function CreateStationForm({ onClose }) {
+  const { selectedStation, createStation, updateStation, clearSelectedStation } = useStationStore(); // Destructure store methods
   const [stationName, setStationName] = useState('');
   const [chargePoints, setChargePoints] = useState([{ power: 11, count: 1 }]);
   const [errors, setErrors] = useState({});
-  const [probabilityOfArrival, setProbabilityOfArrival] = useState(100); // Add state for probability of arrival
+  const [probabilityOfArrival, setProbabilityOfArrival] = useState(100);
   const [consumptionOfCars, setConsumptionOfCars] = useState(18); // Set default value to 18
+
+  useEffect(() => {
+    if (selectedStation) {
+      setStationName(selectedStation.station_name);
+      setChargePoints(selectedStation.charge_points);
+      setProbabilityOfArrival(selectedStation.car_arrival_probability);
+      setConsumptionOfCars(selectedStation.consumption_of_cars);
+    }
+  }, [selectedStation]);
 
   const availablePowers = [11, 22, 33, 44, 55].filter(
     (power) => !chargePoints.some((point) => point.power === power)
@@ -39,22 +50,28 @@ function CreateStationForm({ onClose}) {
   const removeChargePoint = (index) => {
     setChargePoints(chargePoints.filter((_, i) => i !== index));
   };
-  const handleSave = (e) => {
+
+  const handleSave = async (e) => {
     e.preventDefault();
     if (validate()) {
       if (window.confirm('Are you sure you want to save this station?')) {
-        const newStation = { stationName, chargePoints, probabilityOfArrival, consumptionOfCars: Number(consumptionOfCars) };
-        console.log(newStation);
+        const newStation = { station_name: stationName, charge_points: chargePoints, car_arrival_probability: probabilityOfArrival, consumption_of_cars: Number(consumptionOfCars) };
+        if (selectedStation) {
+          await updateStation(selectedStation.id, newStation);
+        } else {
+          await createStation(newStation);
+        }
+        clearSelectedStation();
         onClose();
       }
     }
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"> {/* Add z-index */}
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded shadow-lg w-full max-w-4xl overflow-auto">
         <form onSubmit={handleSave} className="p-6">
-          <h1 className="text-xl font-semibold mb-4 text-gray-800 font-sans">New Charging Station</h1>
+          <h1 className="text-xl font-semibold mb-4 text-gray-800 font-sans">{selectedStation ? 'Edit Charging Station' : 'Add Charging Station'}</h1>
           <div className="mb-4">
             <input
               type="text"
@@ -139,7 +156,7 @@ function CreateStationForm({ onClose}) {
             ))}
             {errors.duplicatePower && <p className="text-red-500">{errors.duplicatePower}</p>}
             <button type="button" onClick={addChargePoint} className="text-blue-500 p-2 mt-4 flex items-center justify-center rounded-full w-10 h-10">
-              <FaPlus /> 
+              <FaPlus />
             </button>
           </div>
 
@@ -149,7 +166,10 @@ function CreateStationForm({ onClose}) {
             </button>
             <button
               type="button"
-              onClick={onClose}
+              onClick={() => {
+                clearSelectedStation();
+                onClose();
+              }}
               className="bg-red-500 text-white px-4 py-2 rounded-md flex items-center"
             >
               <FaTimes className="mr-2" /> Close

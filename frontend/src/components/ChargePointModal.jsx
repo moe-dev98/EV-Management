@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
-import { FaTimes } from 'react-icons/fa'; // Import icon
+import { FaTimes } from 'react-icons/fa'; 
 
 const ChargePointModal = ({ station, onClose }) => {
   // Define table data
-  const data = useMemo(() => station.chargePoints, [station]);
+  const data = useMemo(() => station.charge_points, [station]);
 
   // Define table columns
   const columns = useMemo(
@@ -21,7 +21,6 @@ const ChargePointModal = ({ station, onClose }) => {
     []
   );
 
-  // Create table instance
   const table = useReactTable({
     data,
     columns,
@@ -31,7 +30,7 @@ const ChargePointModal = ({ station, onClose }) => {
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-md w-full max-w-4xl overflow-auto">
-        <h3 className="text-lg font-bold mb-4 text-black-600 font-sans">{station.name} Distribution</h3>
+        <h3 className="text-lg font-bold mb-4 text-black-600 font-sans">{station.station_name} Distribution</h3>
         <div>
           <table className="min-w-full bg-white border border-gray-200">
             <thead>

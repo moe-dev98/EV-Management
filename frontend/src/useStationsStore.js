@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_BASE_URL = "http://0.0.0.0:8000/stations/"; // Your FastAPI endpoint
+const API_BASE_URL = "http://0.0.0.0:8001/stations/"; // Your FastAPI endpoint
 
 export const useStationStore = create((set) => ({
     stations: [],
+    selectedStation: null, // Add state for selected station
     loading: false,
     error: null,
 
@@ -56,4 +57,21 @@ export const useStationStore = create((set) => ({
             console.error("Error deleting station:", err);
         }
     },
+
+    // Get a station by ID
+    getStationById: async (id) => {
+        try {
+            const response = await axios.get(`${API_BASE_URL}${id}`);
+            return response.data;
+        } catch (err) {
+            console.error("Error fetching station:", err);
+            return null;
+        }
+    },
+
+    // Set selected station
+    setSelectedStation: (station) => set({ selectedStation: station }),
+
+    // Clear selected station
+    clearSelectedStation: () => set({ selectedStation: null }),
 }));
