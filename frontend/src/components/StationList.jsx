@@ -94,9 +94,9 @@ const StationList = () => {
       {
         header: 'Actions',
         accessorKey: 'actions',
-        size: 200,
+        size: 100,
         cell: ({ row }) => (
-          <div className="flex justify-center space-x-2">
+          <div className="flex space-x-2">
             <button
               onClick={() => handleModal('selectedStation', row.original.actions)}
               className="text-blue-500 py-1 px-3 rounded border border-blue-500 hover:text-blue-700 flex items-center"
