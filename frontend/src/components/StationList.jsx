@@ -1,27 +1,49 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
 import ChargePointModal from './ChargePointModal';
 import CreateStationForm from './CreateStationForm';
-import { FaPlus, FaTrash, FaChartBar } from 'react-icons/fa'; // Import icons
-import { useStationStore } from '../useStationsStore'; // Import the store
+import { FaPlus, FaTrash, FaChartBar } from 'react-icons/fa'; 
+import { useStationStore } from '../useStationsStore'; 
 
 const StationList = () => {
   const { stations, fetchStations, deleteStation, getStationById, setSelectedStation, clearSelectedStation } = useStationStore();
   const [modalState, setModalState] = useState({
     isCreateModalOpen: false,
   });
-
-  useEffect(() => {
-    fetchStations(); // Fetch stations from the API
-  }, [fetchStations]);
+  const [calculatedData, setCalculatedData] = useState([]);
 
   const calculateTotalChargePoints = (chargePoints) => {
-    return chargePoints.reduce((total, cp) => total + cp.count, 0);
+    const points = chargePoints || [];
+    return points.reduce((total, point) => total + point.count, 0);
   };
 
   const calculateMaxCapacity = (chargePoints) => {
-    return chargePoints.reduce((max, cp) => max + (cp.power * cp.count), 0);
+    const points = chargePoints || [];
+    return points.reduce((max, cp) => max + (cp.power * cp.count), 0);
   };
+
+  useEffect(() => {
+    const fetchStationsData = async () => {
+      await fetchStations(); // Fetch stations from the API
+    };
+    fetchStationsData();
+  }, [fetchStations]);
+
+  useEffect(() => {
+    const data = stations.map((station) => ({
+      id: station.id,
+      stationName: station.station_name,
+      positionLat: station.position_lat,
+      positionLong: station.position_long,
+      carArrivalProbability: station.car_arrival_probability,
+      consumptionOfCars: station.consumption_of_cars,
+      totalChargePoints: calculateTotalChargePoints(station.charge_points),
+      maxCapacity: calculateMaxCapacity(station.charge_points),
+      chargePoints: station.charge_points,
+      actions: station,
+    }));
+    setCalculatedData(data);
+  }, [stations]);
 
   const handleModal = (type, value) => {
     setModalState((prevState) => ({
@@ -30,35 +52,16 @@ const StationList = () => {
     }));
   };
 
-  const handleDeleteStation = (stationId) => {
+  const handleDeleteStation = useCallback(async (stationId) => {
     if (window.confirm('Are you sure you want to delete this station?')) { // can be a custom dialogue component as well
-      deleteStation(stationId);
-    }
-  };
+      await deleteStation(stationId);    }
+  }, [deleteStation, fetchStations]);
 
-  const handleEditStation = async (stationId) => {
+  const handleEditStation = useCallback(async (stationId) => {
     const station = await getStationById(stationId);
     setSelectedStation(station);
     handleModal('isCreateModalOpen', true);
-  };
-
-  // Define table data
-  const data = useMemo(
-    () =>
-      stations.map((station) => ({
-        id: station.id,
-        stationName: station.station_name,
-        positionLat: station.position_lat,
-        positionLong: station.position_long,
-        carArrivalProbability: station.car_arrival_probability,
-        consumptionOfCars: station.consumption_of_cars,
-        totalChargePoints: calculateTotalChargePoints(station.charge_points),
-        maxCapacity: calculateMaxCapacity(station.charge_points),
-        chargePoints: station.charge_points,
-        actions: station,
-      })),
-    [stations]
-  );
+  }, [getStationById, setSelectedStation]);
 
   // Define table columns
   const columns = useMemo(
@@ -116,11 +119,11 @@ const StationList = () => {
         ),
       },
     ],
-    []
+    [handleEditStation, handleDeleteStation]
   );
 
   const table = useReactTable({
-    data,
+    data: calculatedData,
     columns,
     getCoreRowModel: getCoreRowModel(),
     columnResizeMode: 'onChange', // Enable column resizing

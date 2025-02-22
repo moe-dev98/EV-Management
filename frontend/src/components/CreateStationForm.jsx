@@ -3,12 +3,12 @@ import { FaPlus, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
 import { useStationStore } from '../useStationsStore';
 
 function CreateStationForm({ onClose }) {
-  const { selectedStation, createStation, updateStation, clearSelectedStation } = useStationStore(); // Destructure store methods
+  const { selectedStation, createStation, updateStation, clearSelectedStation , fetchStations} = useStationStore(); 
   const [stationName, setStationName] = useState('');
   const [chargePoints, setChargePoints] = useState([{ power: 11, count: 1 }]);
   const [errors, setErrors] = useState({});
   const [probabilityOfArrival, setProbabilityOfArrival] = useState(100);
-  const [consumptionOfCars, setConsumptionOfCars] = useState(18); // Set default value to 18
+  const [consumptionOfCars, setConsumptionOfCars] = useState(18); 
 
   useEffect(() => {
     if (selectedStation) {
@@ -55,12 +55,19 @@ function CreateStationForm({ onClose }) {
     e.preventDefault();
     if (validate()) {
       if (window.confirm('Are you sure you want to save this station?')) {
-        const newStation = { station_name: stationName, charge_points: chargePoints, car_arrival_probability: probabilityOfArrival, consumption_of_cars: Number(consumptionOfCars) };
+        const sanitizedChargePoints = chargePoints.map(({ power, count }) => ({ power, count }));
+        const newStation = { 
+          station_name: stationName, 
+          charge_points: sanitizedChargePoints.length ? sanitizedChargePoints : [{ power: 11, count: 1 }], // Ensure chargePoints is always an array with at least one element
+          car_arrival_probability: probabilityOfArrival, 
+          consumption_of_cars: Number(consumptionOfCars) 
+        };
         if (selectedStation) {
           await updateStation(selectedStation.id, newStation);
         } else {
           await createStation(newStation);
         }
+        fetchStations();
         clearSelectedStation();
         onClose();
       }

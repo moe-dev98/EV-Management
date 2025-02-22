@@ -19,7 +19,7 @@ class StationsRepo:
         )
 
     def get_stations(self, db: Session) -> list[Station]:
-        return db.query(Station).all()
+        return db.query(Station).order_by(Station.id.desc()).all()
 
     def upsert_station(
         self, db: Session, station: Station, charge_points: list[ChargePoint]
