@@ -48,7 +48,6 @@ If this was a real task I would consider also:
 
      - Using a UI library to have more appealing forms and input UI's
      - Make the model closeable when clicking outside
-     - Introduce a form and validation library for better code quality and easier development 
      - Adding success / failure snack bar as part of an HTTP interceptor when the DELETE , POST .. fail or succeed
      - Add NameExists , every charge station requires one charge Point at least , other field validation on the server side etc ..
      - Add data Export feature / pdf for every chart
