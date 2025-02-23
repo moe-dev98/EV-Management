@@ -4,7 +4,7 @@ This is a FastAPI application using PostgreSQL to create APIs related to an enti
 
 ## Prerequisites
 
-1. Ensure you have Python and pip installed. You can download Python from [python3.org](https://www.python.org/).
+1. Ensure you have Python , postgres and pip installed. You can download Python from [python3.org](https://www.python.org/).
 
 ## Running the Application
 
@@ -26,7 +26,7 @@ This is a FastAPI application using PostgreSQL to create APIs related to an enti
     chmod +x start.sh
     ```
 
-4. Run the FastAPI application using the provided script:
+4. Run the FastAPI application using the provided script ( please note that the default postgres user is set within the script ):
 
     ```sh
     ./start.sh
