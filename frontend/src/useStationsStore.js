@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_BASE_URL = "http://0.0.0.0:8001/stations/";
+const API_BASE_URL = "http://0.0.0.0:8000/stations/";
 
 export const useStationStore = create((set) => ({
     stations: [],
