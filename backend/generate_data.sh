@@ -11,9 +11,9 @@ INSERT INTO stations (name, car_arrival_probability, consumption_of_cars) VALUES
 
 INSERT INTO charge_points (power, count, station_id) VALUES
 (11, 2, 1),
-(11, 3, 1),
+(22, 3, 1),
 (11, 1, 2),
-(11, 2, 2),
+(22, 2, 2),
 (11, 3, 3),
-(11, 1, 3);
+(22, 1, 3);
 "
