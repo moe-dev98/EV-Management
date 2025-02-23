@@ -4,3 +4,4 @@ sqlalchemy
 pydantic
 pytest
 psycopg2
+httpx
