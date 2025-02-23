@@ -10,28 +10,29 @@ import {
 const SideNavBar = () => {
   return (
     <div className="w-55 h-full bg-gray-800 text-white fixed">
-      <div className="p-4">
-        <h2 className="text-xl font-bold">
-          <FaCar className="h-12 w-12" />
-        </h2>
+      <div className="p-4 flex justify-center">
+        <NavLink to="/daily-overview">
+          <h2 className="text-xl font-bold">
+            <FaCar className="h-12 w-12" />
+          </h2>
+        </NavLink>
       </div>
       <nav className="mt-4">
         <ul>
-
-          <li className="p-4 hover:bg-gray-700">
-            <NavLink to="/daily-overview" activeClassName="bg-gray-700">
+          <li className="hover:bg-gray-700">
+            <NavLink to="/daily-overview" activeClassName="bg-gray-700" className="block p-4">
               <FaHome className="inline-block mr-2" />
               Daily OverView
             </NavLink>
           </li>
-          <li className="p-4 hover:bg-gray-700">
-            <NavLink to="/analytics" exact activeClassName="bg-gray-700">
+          <li className="hover:bg-gray-700">
+            <NavLink to="/analytics" exact activeClassName="bg-gray-700" className="block p-4">
               <FaChartBar className="inline-block mr-2" />
               Analytics
             </NavLink>
           </li>
-          <li className="p-4 hover:bg-gray-700">
-            <NavLink to="/" exact activeClassName="bg-gray-700">
+          <li className="hover:bg-gray-700">
+            <NavLink to="/" exact activeClassName="bg-gray-700" className="block p-4">
               <FaBatteryHalf className="inline-block mr-2" />
               Charging Stations
             </NavLink>
