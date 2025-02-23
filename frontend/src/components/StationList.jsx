@@ -23,10 +23,8 @@ const StationList = () => {
   };
 
   useEffect(() => {
-    const fetchStationsData = async () => {
-      await fetchStations(); // Fetch stations from the API
-    };
-    fetchStationsData();
+      fetchStations(); // Fetch stations from the API
+
   }, [fetchStations]);
 
   useEffect(() => {

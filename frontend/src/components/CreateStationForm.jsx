@@ -6,14 +6,16 @@ import { useStationStore } from '../useStationsStore';
 
 
 function CreateStationForm({ onClose }) {
-  const { selectedStation, createStation, updateStation, clearSelectedStation, fetchStations } = useStationStore();
+  const { stations, selectedStation, createStation, updateStation, clearSelectedStation, fetchStations } = useStationStore();
 
   const validationSchema = yup.object({
-    stationName: yup.string().required('Station name is required').test('unique-name', 'Station name already exists', async (value) => {
-      const stations = await fetchStations() || [];
-      return !stations.some(station => station.name === value);
-    console.log('Fetched stations:', stations);
-    }),
+    stationName: yup.string()
+      .required('Station name is required')
+      .matches(/^[a-zA-Z0-9\s]+$/, 'Station name should not contain special characters')
+      .test('unique-name', 'Station name already exists', async (value) => {
+        if (selectedStation && selectedStation.name === value) return true;
+        return !stations.some(station => station.name === value);
+      }),
     probabilityOfArrival: yup.number().min(20, 'Must be at least 20').max(200, 'Must be at most 200').required('Probability of arrival is required'),
     consumptionOfCars: yup.number().min(10, 'Must be at least 10').max(50, 'Must be at most 50').required('Consumption of cars is required'),
     chargePoints: yup.array().of(
@@ -56,6 +58,10 @@ function CreateStationForm({ onClose }) {
   });
 
   useEffect(() => {
+    fetchStations();
+  }, [fetchStations]);
+
+  useEffect(() => {
     if (selectedStation) {
       formik.setValues({
         stationName: selectedStation.name,
@@ -76,7 +82,7 @@ function CreateStationForm({ onClose }) {
         <FormikProvider value={formik}>
           <form onSubmit={formik.handleSubmit} className="p-6 flex flex-col space-y-4 overflow-auto">
             <h1 className="text-xl font-semibold mb-4 text-gray-800 font-sans">{selectedStation ? 'Edit Charging Station' : 'Add Charging Station'}</h1>
-            <div className="flex flex-col space-y-2">z
+            <div className="flex flex-col space-y-2">Station name
               <input
                 type="text"
                 name="stationName"

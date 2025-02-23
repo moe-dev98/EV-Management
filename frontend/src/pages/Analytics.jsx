@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { FaFilter } from 'react-icons/fa';
 import BarChartCard from '../components/BarChartCard';
 import NumberCard from '../components/NumberCard';
 import TinyLineChartCard from '../components/TinyLineChartCard';
@@ -27,10 +26,6 @@ const Analytics = () => {
   return (
     <div className="p-4">
       <div className="mb-4 flex items-center space-x-2">
-        <button className="p-2 border rounded flex items-center space-x-1">
-          <FaFilter />
-          <span>Date</span>
-        </button>
         <select id="timePeriod" value={timePeriod} onChange={handleTimePeriodChange} className="p-2 border rounded">
           <option value="daily">Daily</option>
           <option value="weekly">Weekly</option>
