@@ -47,6 +47,7 @@ class StationsRepo:
     def delete_station(self, db: Session, station_id: int) -> bool:
         db_station = db.query(Station).filter(Station.id == station_id).first()
         if db_station:
+            db.query(ChargePoint).filter(ChargePoint.station_id == station_id).delete()
             db.delete(db_station)
             db.commit()
             return True

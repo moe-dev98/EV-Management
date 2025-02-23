@@ -140,35 +140,37 @@ const StationList = () => {
           <FaPlus className="mr-2" /> Create Station
         </button>
       </div>
-      <table className="min-w-full bg-white border border-gray-200">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id} className="py-2 px-4 border-b bg-gray-100 text-left" style={{ width: header.column.getSize() }}>
-                  {flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="hover:bg-gray-50">
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="py-2 px-4 border-b text-left" style={{ width: cell.column.getSize() }}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
+      {calculatedData.length > 0 ? (
+        <table className="min-w-full bg-white border border-gray-200">
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} className="py-2 px-4 border-b bg-gray-100 text-left" style={{ width: header.column.getSize() }}>
+                    {flexRender(header.column.columnDef.header, header.getContext())}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id} className="hover:bg-gray-50">
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className="py-2 px-4 border-b text-left" style={{ width: cell.column.getSize() }}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <div className="text-center py-4 text-gray-500">No charging stations available. Please create a new station.</div>
+      )}
       {modalState.selectedStation && (
         <ChargePointModal station={modalState.selectedStation} onClose={() => handleModal('selectedStation', null)} />
       )}
-
       {modalState.isCreateModalOpen && (
         <CreateStationForm onClose={() => handleModal('isCreateModalOpen', false)} />
       )}
