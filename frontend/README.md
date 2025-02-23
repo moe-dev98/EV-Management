@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Getting Started
 
 The front end of the EV-Management project is a React application that uses Zustand to manage the state of one entity called "stations". It also uses Leaflet as a map library and rescharts for building charts.
 
@@ -6,17 +6,15 @@ The front end of the EV-Management project is a React application that uses Zust
 
 In the project directory, you can run:
 
-### `npm i`
+ `npm i`
 
 Installs all the needed dependencies
 
-### `npm start`
+ `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
 ### Pages
 
