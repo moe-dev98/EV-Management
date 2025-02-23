@@ -9,7 +9,7 @@ The front end applications require the backend to be simultaneously running with
 ## Details
 
 I was asked to do task 1 and task 2a. Both these tasks were completed and all bonus points questions have been answered except for: "If you consider the impact of DST vs. mapping the hours to the 15 minute ticks".
-Task 2b was optional but I still wanted to include a backend element to the task and added persistence of the inputs while I kept the output results a static JSON under `/frontend/src/data`.
+Task 2b was optional but I still wanted to include a backend element to the task and added persistence of the inputs while I kept the output results for the analytics charts a static JSON under `/frontend/src/data`.
 
 - Task 1: `/backend/simulation`
 - Task 2a: `/frontend`
