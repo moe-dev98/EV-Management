@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 import { useState, useEffect } from 'react';
 
 const LineChartCard = ({ title, data }) => {
@@ -58,8 +58,12 @@ const LineChartCard = ({ title, data }) => {
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={data[selectedStation]} title={title}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="hour" interval={2} />
-          <YAxis />
+          <XAxis dataKey="hour" interval={2}>
+            <Label value="TimeStamp" offset={-3} position="insideBottom" style={{ textAnchor: 'middle', dy: 10 }} />
+          </XAxis>
+          <YAxis>
+            <Label value="Value (kw)" angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
+          </YAxis>
           <Tooltip />
           <Legend content={renderLegend} />
           {dataKeys.map((key, index) => (
