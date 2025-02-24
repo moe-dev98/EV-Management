@@ -12,7 +12,6 @@ const BarChartCard = ({ title, data, timePeriod }) => {
         <BarChart data={data[timePeriod]}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey={timePeriod === 'daily' ? 'date' : timePeriod === 'weekly' ? 'week' : timePeriod === 'monthly' ? 'month' : 'year'}>
-            <Label value={timePeriod === 'daily' ? 'Date' : timePeriod === 'weekly' ? 'Date' : timePeriod === 'monthly' ? 'Date' : 'Date'} offset={-4} position="insideBottom" style={{ textAnchor: 'middle', dy: 10 }} />
           </XAxis>
           <YAxis>
             <Label value="Charging Events" angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />

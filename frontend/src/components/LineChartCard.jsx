@@ -59,7 +59,6 @@ const LineChartCard = ({ title, data }) => {
         <LineChart data={data[selectedStation]} title={title}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="hour" interval={2}>
-            <Label value="TimeStamp" offset={-3} position="insideBottom" style={{ textAnchor: 'middle', dy: 10 }} />
           </XAxis>
           <YAxis>
             <Label value="Value (kw)" angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
